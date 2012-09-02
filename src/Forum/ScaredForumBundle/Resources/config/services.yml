@@ -1,0 +1,7 @@
+parameters:
+#    scared_forum.example.class: Forum\ScaredForumBundle\Example
+
+services:
+#    scared_forum.example:
+#        class: %scared_forum.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
