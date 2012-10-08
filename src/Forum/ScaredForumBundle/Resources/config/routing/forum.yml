@@ -1,0 +1,30 @@
+forum:
+    pattern:  /
+    defaults: { _controller: "ScaredForumBundle:Forum:index" }
+
+forum_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ScaredForumBundle:Forum:show" }
+
+forum_new:
+    pattern:  /new
+    defaults: { _controller: "ScaredForumBundle:Forum:new" }
+
+forum_create:
+    pattern:  /create
+    defaults: { _controller: "ScaredForumBundle:Forum:create" }
+    requirements: { _method: post }
+
+forum_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ScaredForumBundle:Forum:edit" }
+
+forum_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ScaredForumBundle:Forum:update" }
+    requirements: { _method: post }
+
+forum_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ScaredForumBundle:Forum:delete" }
+    requirements: { _method: post }

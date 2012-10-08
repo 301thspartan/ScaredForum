@@ -1,0 +1,31 @@
+Forum\ScaredForumBundle\Entity\Thread:
+    type: entity
+    table: null
+    repositoryClass: Forum\ScaredForumBundle\Entity\ThreadRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+        created_at:
+          type: date
+          gedmo:
+            timestampable:
+              on: create
+        updated_at:
+          type: datetime
+          gedmo:
+            timestampable:
+              on: update
+        manyToOne:
+            forum:
+                targetEntity: Forum
+            created_by:
+                targetEntity: User
+    lifecycleCallbacks: {  }

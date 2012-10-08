@@ -6,7 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Forum\ScaredForumBundle\Entity\ForumGroups;
+use Forum\ScaredForumBundle\Entity\Forum;
 use Forum\ScaredForumBundle\Form\ForumGroupsType;
+use Forum\ScaredForumBundle\Form\ForumType;
 
 /**
  * ForumGroups controller.
@@ -23,9 +25,10 @@ class ForumGroupsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ScaredForumBundle:ForumGroups')->findAll();
+        $form = $this->createForm(new ForumGroupsType(), new ForumGroups());
 
         return $this->render('ScaredForumBundle:ForumGroups:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'form' => $form->createView(),
         ));
     }
 
@@ -44,10 +47,13 @@ class ForumGroupsController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        $forumForm = $this->createForm(new ForumType(), new Forum());
 
         return $this->render('ScaredForumBundle:ForumGroups:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+            'new_forum_form' => $forumForm->createView(),
+        ));
     }
 
     /**

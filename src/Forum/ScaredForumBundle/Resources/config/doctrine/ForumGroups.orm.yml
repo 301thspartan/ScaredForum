@@ -13,4 +13,17 @@ Forum\ScaredForumBundle\Entity\ForumGroups:
             length: 255
         description:
             type: text
+        created_at:
+          type: date
+          gedmo:
+            timestampable:
+              on: create
+        updated_at:
+          type: datetime
+          gedmo:
+            timestampable:
+              on: update
+    manyToOne:
+        created_by:
+            targetEntity: User
     lifecycleCallbacks: {  }

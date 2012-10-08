@@ -1,3 +1,6 @@
+{% extends 'ScaredForumBundle::base.html.twig' %}
+
+{% block body %}
 <h1>ForumGroups creation</h1>
 
 <form action="{{ path('forumgroups_create') }}" method="post" {{ form_enctype(form) }}>
@@ -7,6 +10,7 @@
     </p>
 </form>
 
+
 <ul class="record_actions">
     <li>
         <a href="{{ path('forumgroups') }}">
@@ -14,3 +18,5 @@
         </a>
     </li>
 </ul>
+
+{% endblock %}

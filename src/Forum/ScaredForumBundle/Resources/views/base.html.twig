@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    <div style="float:right;">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">Войти</a>
+        {% endif %}
+    </div>
+
+    {% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+    {% endfor %}
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+
+    <table border="1" style="width: 100%;">
+        <tr><td colspan="3">ХИДЕР</td></tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                {% block body %}{% endblock %}
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr><td colspan="3">ФУТЕР</td></tr>
+    </table>
+
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
