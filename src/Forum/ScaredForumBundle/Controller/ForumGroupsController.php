@@ -48,9 +48,12 @@ class ForumGroupsController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $forumForm = $this->createForm(new ForumType(), new Forum());
+        $forums = $em->getRepository("ScaredForumBundle:ForumGroups")
+            ->getForumsByGroup($id);
 
         return $this->render('ScaredForumBundle:ForumGroups:show.html.twig', array(
             'entity'      => $entity,
+            'forums'      => $forums,
             'delete_form' => $deleteForm->createView(),
             'new_forum_form' => $forumForm->createView(),
         ));

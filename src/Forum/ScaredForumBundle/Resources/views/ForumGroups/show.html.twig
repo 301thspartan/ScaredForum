@@ -10,6 +10,22 @@
         </tr>
     </tbody>
 </table>
+
+
+    {% for forum in forums %}
+        <table class="records_list" border="1"style="margin-top: 20px; width: 100%;">
+        <tbody>
+        <tr>
+            <td><a href="{{ path('forum_show', { 'id': forum.id }) }}">{{ forum.name }}</a></td>
+        </tr>
+        <tr>
+            <td>{{ forum.description }}</td>
+        </tr>
+        </tbody>
+        </table>
+    {% endfor %}
+
+
     {% if is_granted('ROLE_ADMIN') %}
         <h1>Новый форум</h1>
         <form action="{{ path('forum_create') }}" method="post" {{ form_enctype(new_forum_form) }}>

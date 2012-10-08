@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ForumGroupsRepository extends EntityRepository
 {
+    public function getForumsByGroup($gid){
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT f FROM ScaredForumBundle:Forum f
+                    JOIN f.group g WHERE g.id = :gid ORDER BY f.id DESC');
+
+        $query->setParameter('gid', $gid);
+
+        return $query->getResult();
+    }
 }

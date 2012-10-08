@@ -13,9 +13,7 @@ class ThreadType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('manyToOne')
+            ->add('forum')
         ;
     }
 

@@ -6,7 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Forum\ScaredForumBundle\Entity\Forum;
+use Forum\ScaredForumBundle\Entity\Thread;
 use Forum\ScaredForumBundle\Form\ForumType;
+use Forum\ScaredForumBundle\Form\ThreadType;
 
 /**
  * Forum controller.
@@ -14,22 +16,7 @@ use Forum\ScaredForumBundle\Form\ForumType;
  */
 class ForumController extends Controller
 {
-    /**
-     * Lists all Forum entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('ScaredForumBundle:Forum')->findAll();
-
-        return $this->render('ScaredForumBundle:Forum:index.html.twig', array(
-            'entities' => $entities,
-        ));
-    }
-
-    /**
+        /**
      * Creates a new Forum entity.
      *
      */
@@ -82,11 +69,19 @@ class ForumController extends Controller
             throw $this->createNotFoundException('Unable to find Forum entity.');
         }
 
+        $threads = $em->getRepository("ScaredForumBundle:Forum")
+            ->getThreadsByForum($id);
+
+        $thread_form = $forumForm = $this->createForm(new ThreadType(), new Thread());
+
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ScaredForumBundle:Forum:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'threads'     => $threads,
+            'thread_form'     => $thread_form->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**

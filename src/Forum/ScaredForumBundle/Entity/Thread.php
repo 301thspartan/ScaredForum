@@ -192,4 +192,60 @@ class Thread
     {
         return $this->oneToOne;
     }
+    /**
+     * @var Forum\ScaredForumBundle\Entity\Forum
+     */
+    private $forum;
+
+    /**
+     * @var Forum\ScaredForumBundle\Entity\User
+     */
+    private $created_by;
+
+
+    /**
+     * Set forum
+     *
+     * @param Forum\ScaredForumBundle\Entity\Forum $forum
+     * @return Thread
+     */
+    public function setForum(\Forum\ScaredForumBundle\Entity\Forum $forum = null)
+    {
+        $this->forum = $forum;
+    
+        return $this;
+    }
+
+    /**
+     * Get forum
+     *
+     * @return Forum\ScaredForumBundle\Entity\Forum 
+     */
+    public function getForum()
+    {
+        return $this->forum;
+    }
+
+    /**
+     * Set created_by
+     *
+     * @param Forum\ScaredForumBundle\Entity\User $createdBy
+     * @return Thread
+     */
+    public function setCreatedBy(\Forum\ScaredForumBundle\Entity\User $createdBy = null)
+    {
+        $this->created_by = $createdBy;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_by
+     *
+     * @return Forum\ScaredForumBundle\Entity\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
+    }
 }

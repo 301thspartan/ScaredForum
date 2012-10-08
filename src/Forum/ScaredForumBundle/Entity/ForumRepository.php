@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ForumRepository extends EntityRepository
 {
+    public function getThreadsByForum($fid){
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT t FROM ScaredForumBundle:Thread t
+                    JOIN t.forum f WHERE f.id = :fid ORDER BY t.id');
+
+        $query->setParameter('fid', $fid);
+
+        return $query->getResult();
+    }
 }

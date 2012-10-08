@@ -1,36 +1,41 @@
-<h1>Forum</h1>
+{% extends 'ScaredForumBundle::base.html.twig' %}
 
+{% block body %}
 <table class="record_properties">
     <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
+            <td><h1>{{ entity.name }}<h1></td>
         </tr>
         <tr>
-            <th>Name</th>
-            <td>{{ entity.name }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
             <td>{{ entity.description }}</td>
-        </tr>
-        <tr>
-            <th>Created_at</th>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Updated_at</th>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
         </tr>
     </tbody>
 </table>
 
+    {% for thread in threads %}
+        <table class="records_list" border="1"style="margin-top: 20px; width: 100%;">
+            <tbody>
+            <tr>
+                <td><a href="{{ path('thread_show', { 'id': thread.id }) }}">{{ thread.name }}</a></td>
+            </tr>
+            <tr>
+                <td>{{ thread.description }}</td>
+            </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <form action="{{ path('thread_create') }}" method="post" {{ form_enctype(thread_form) }}>
+            {{ form_widget(thread_form) }}
+            <p>
+                <button type="submit">Create</button>
+            </p>
+        </form>
+    {% endif %}
+
+{% if is_granted('ROLE_ADMIN') %}
 <ul class="record_actions">
-    <li>
-        <a href="{{ path('forum') }}">
-            Back to the list
-        </a>
-    </li>
     <li>
         <a href="{{ path('forum_edit', { 'id': entity.id }) }}">
             Edit
@@ -44,3 +49,5 @@
         </form>
     </li>
 </ul>
+{% endif %}
+{% endblock %}

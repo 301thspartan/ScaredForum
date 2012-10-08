@@ -42,11 +42,11 @@ class Forum
     {
         $this->ForumGroups = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,14 +62,14 @@ class Forum
     public function setGroupId($groupId)
     {
         $this->group_id = $groupId;
-    
+
         return $this;
     }
 
     /**
      * Get group_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getGroupId()
     {
@@ -85,14 +85,14 @@ class Forum
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -108,14 +108,14 @@ class Forum
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -131,7 +131,7 @@ class Forum
     public function addForumGroup(\Forum\ScaredForumBundle\Entity\ForumGroups $forumGroups)
     {
         $this->ForumGroups[] = $forumGroups;
-    
+
         return $this;
     }
 
@@ -148,7 +148,7 @@ class Forum
     /**
      * Get ForumGroups
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getForumGroups()
     {
@@ -174,14 +174,14 @@ class Forum
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -197,14 +197,14 @@ class Forum
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -225,14 +225,14 @@ class Forum
     public function setAddress(\Forum\ScaredForumBundle\Entity\ForumGroups $address = null)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
     /**
      * Get address
      *
-     * @return Forum\ScaredForumBundle\Entity\ForumGroups 
+     * @return Forum\ScaredForumBundle\Entity\ForumGroups
      */
     public function getAddress()
     {
@@ -253,14 +253,14 @@ class Forum
     public function setGroup(\Forum\ScaredForumBundle\Entity\ForumGroups $group = null)
     {
         $this->group = $group;
-    
+
         return $this;
     }
 
     /**
      * Get group
      *
-     * @return Forum\ScaredForumBundle\Entity\ForumGroups 
+     * @return Forum\ScaredForumBundle\Entity\ForumGroups
      */
     public function getGroup()
     {
@@ -281,17 +281,21 @@ class Forum
     public function setCreatedBy(\Forum\ScaredForumBundle\Entity\User $createdBy = null)
     {
         $this->created_by = $createdBy;
-    
+
         return $this;
     }
 
     /**
      * Get created_by
      *
-     * @return Forum\ScaredForumBundle\Entity\User 
+     * @return Forum\ScaredForumBundle\Entity\User
      */
     public function getCreatedBy()
     {
         return $this->created_by;
+    }
+
+    public function __toString(){
+        return $this->getName();
     }
 }
