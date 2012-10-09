@@ -10,22 +10,17 @@
         <tr>
             <td>{{ entity.description }}</td>
         </tr>
-
-        <tr>
-            <td>{{ entity.description }}</td>
-        </tr>
     </tbody>
 </table>
-<table class="record_properties" border="1">
-    <tbody>
-        <tr>
-            <td>Новое сообщение</td>
-        </tr>
-
-        <tr>
-            <td>Новое сообщение</td>
-        </tr>
-
-    </tbody>
-</table>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>Новое сообщение</h1>
+        <form action="{{ path('post_create') }}" method="post" {{ form_enctype(post_form) }}>
+            {{ form_widget(post_form) }}
+            <p>
+                <button type="submit">Create</button>
+            </p>
+        </form>
+    {% endif %}
+    {{ tinymce_init() }}
 {% endblock %}
+

@@ -21,7 +21,8 @@
 
 		"friendsofsymfony/user-bundle": "*",
 		"knplabs/knp-paginator-bundle": "dev-master",
-		"stof/doctrine-extensions-bundle": "dev-master"
+		"stof/doctrine-extensions-bundle": "dev-master",
+		"stfalcon/tinymce-bundle": "dev-master"
 
     },
     "scripts": {

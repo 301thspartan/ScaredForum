@@ -13,6 +13,7 @@ return array(
     'Symfony\\Bundle\\AsseticBundle' => $vendorDir . '/symfony/assetic-bundle/',
     'Symfony' => $vendorDir . '/symfony/symfony/src/',
     'Stof\\DoctrineExtensionsBundle' => $vendorDir . '/stof/doctrine-extensions-bundle/',
+    'Stfalcon\\Bundle\\TinymceBundle' => $vendorDir . '/stfalcon/tinymce-bundle/',
     'SessionHandlerInterface' => $vendorDir . '/symfony/symfony/src/Symfony/Component/HttpFoundation/Resources/stubs',
     'Sensio\\Bundle\\GeneratorBundle' => $vendorDir . '/sensio/generator-bundle/',
     'Sensio\\Bundle\\FrameworkExtraBundle' => $vendorDir . '/sensio/framework-extra-bundle/',
