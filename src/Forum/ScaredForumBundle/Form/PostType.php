@@ -10,15 +10,12 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('title')
-            ->add('text')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('forum')
-            ->add('thread')
-            ->add('author')
-        ;
+        $builder->add('text', 'textarea', array(
+            'attr' => array(
+                'class' => 'tinymce',
+                'data-theme' => 'medium' // simple, advanced, bbcode
+            )
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -6,7 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Forum\ScaredForumBundle\Entity\Thread;
+use Forum\ScaredForumBundle\Entity\Post;
 use Forum\ScaredForumBundle\Form\ThreadType;
+use Forum\ScaredForumBundle\Form\PostType;
 
 /**
  * Thread controller.
@@ -23,6 +25,7 @@ class ThreadController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ScaredForumBundle:Thread')->findAll();
+
 
         return $this->render('ScaredForumBundle:Thread:index.html.twig', array(
             'entities' => $entities,
@@ -83,10 +86,17 @@ class ThreadController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        $postForm = $this->createForm(new PostType(), new Post());
+        $posts = $em->getRepository("ScaredForumBundle:Thread")
+            ->getPostsByThread($id);
+
 
         return $this->render('ScaredForumBundle:Thread:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'posts'       => $posts,
+            'delete_form' => $deleteForm->createView(),
+            'post_form'   => $postForm->createView(),
+        ));
     }
 
     /**

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Forum\ScaredForumBundle\Entity\Post;
 use Forum\ScaredForumBundle\Form\PostType;
+use Forum\ScaredForumBundle\Form\InternalPostType;
 
 /**
  * Post controller.
@@ -36,9 +37,13 @@ class PostController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Post();
-        $form = $this->createForm(new PostType(), $entity);
-        $form->bind($request);
+        $form = $this->createForm(new InternalPostType(), $entity);
 
+        $data = $request->request->get($form->getName());
+        $data['author'] = $this->getUser()->getId();
+        $data['title']  = '123';
+
+        $form->bind($data);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);

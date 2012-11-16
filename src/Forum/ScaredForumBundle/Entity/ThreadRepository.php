@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ThreadRepository extends EntityRepository
 {
+    public function getPostsByThread($tid){
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT p FROM ScaredForumBundle:Post p
+                    JOIN p.thread t WHERE t.id = :tid ORDER BY p.id');
+
+        $query->setParameter('tid', $tid);
+
+        return $query->getResult();
+    }
 }

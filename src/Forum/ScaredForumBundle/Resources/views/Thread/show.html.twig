@@ -13,12 +13,14 @@
     </tbody>
 </table>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <h1>Новое сообщение</h1>
+        <h3>Новое сообщение</h3>
         <form action="{{ path('post_create') }}" method="post" {{ form_enctype(post_form) }}>
             {{ form_widget(post_form) }}
             <p>
                 <button type="submit">Create</button>
             </p>
+            <input type="hidden" name="tid" value="{{ entity.id }}">
+            <input type="hidden" name="fid" value="{{ entity.forum.id }}">
         </form>
     {% endif %}
     {{ tinymce_init() }}

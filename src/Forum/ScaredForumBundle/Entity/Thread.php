@@ -38,7 +38,7 @@ class Thread
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,14 +54,14 @@ class Thread
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -77,14 +77,14 @@ class Thread
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -100,14 +100,14 @@ class Thread
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -123,14 +123,14 @@ class Thread
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -156,14 +156,14 @@ class Thread
     public function setManyToOne($manyToOne)
     {
         $this->manyToOne = $manyToOne;
-    
+
         return $this;
     }
 
     /**
      * Get manyToOne
      *
-     * @return string 
+     * @return string
      */
     public function getManyToOne()
     {
@@ -179,14 +179,14 @@ class Thread
     public function setOneToOne($oneToOne)
     {
         $this->oneToOne = $oneToOne;
-    
+
         return $this;
     }
 
     /**
      * Get oneToOne
      *
-     * @return string 
+     * @return string
      */
     public function getOneToOne()
     {
@@ -212,14 +212,14 @@ class Thread
     public function setForum(\Forum\ScaredForumBundle\Entity\Forum $forum = null)
     {
         $this->forum = $forum;
-    
+
         return $this;
     }
 
     /**
      * Get forum
      *
-     * @return Forum\ScaredForumBundle\Entity\Forum 
+     * @return Forum\ScaredForumBundle\Entity\Forum
      */
     public function getForum()
     {
@@ -235,17 +235,21 @@ class Thread
     public function setCreatedBy(\Forum\ScaredForumBundle\Entity\User $createdBy = null)
     {
         $this->created_by = $createdBy;
-    
+
         return $this;
     }
 
     /**
      * Get created_by
      *
-     * @return Forum\ScaredForumBundle\Entity\User 
+     * @return Forum\ScaredForumBundle\Entity\User
      */
     public function getCreatedBy()
     {
         return $this->created_by;
+    }
+
+    public function __toString(){
+        return $this->getName();
     }
 }
