@@ -5,45 +5,353 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" media='screen,print' href="/bundles/scaredforum/css/main.css" />
+
+        <!--[if lte IE 7]>
+        <link rel="stylesheet" type="text/css" title='Main' media="screen" href="/bundles/scaredforum/css/ie.css" />
+        <![endif]-->
+        <!--[if lte IE 8]>
+        <style type='text/css'>
+            .ipb_table { table-layout: fixed; }
+            .ipsLayout_content { width: 99.5%; }
+        </style>
+        <![endif]-->
+
+        <style type='text/css'>
+            img.bbc_img { max-width: 100% !important; }
+        </style>
+
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
     </head>
-    <body>
-    <div style="float:right;">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            <a href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
-        {% else %}
-            <a href="{{ path('fos_user_security_login') }}">Войти</a>
-        {% endif %}
-    </div>
-
-    {% for key, message in app.session.getFlashes() %}
-        <div class="{{ key }}">
-            {{ message|trans({}, 'FOSUserBundle') }}
+    <body id="ipboard_body">
+    <div id="ipbwrapper" class="wrapper">
+        <div class="not_logged_in" id="user_navigation">
+            <ul class="ipsList_inline">
+                <li>
+                    <span class="services"></span>
+                    <a id="sign_in" title="Sign In" href=""><img alt="" src="/bundles/scaredforum/img/user_login.png">Вход</a>
+                </li>
+                <li>
+                    <a id="register_link" title="Create Account" href=""><img alt="" src="/bundles/scaredforum/img/user_register.png">Зарегистрироваться</a>
+                </li>
+            </ul>
         </div>
-    {% endfor %}
+        <div id="branding">
+            <div id="logo">
+                <a accesskey="1" rel="home" title="Go to community index" class="textLogo" href="http://www.ipbforumskins.com/skindemo">concise</a>
+            </div>
+            <div class="right" id="search">
+                <form id="search-box" method="post" action="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=search&amp;do=search&amp;fromMainBar=1">
+                    <fieldset>
+                        <label class="hide" for="main_search">Search</label>
+			<span class="right" id="search_wrap">
+				<input type="text" tabindex="100" size="17" class="" name="search_term" id="main_search" placeholder="Search...">
+				<span style="" id="search_options" class="choice ipbmenu clickable">Calendar</span>
+				<ul style="display: none; position: absolute; z-index: 9999;" class="ipbmenu_content ipsPad" id="search_options_menucontent">
+                    <li class="title" style="z-index: 10000;"><strong style="z-index: 10000;">Search section:</strong></li>
 
-    <div>
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
+                    <li class="app" style="z-index: 10000;"><label title="Forums" for="s_forums" style="z-index: 10000;"><input type="radio" value="forums" id="s_forums" class="input_radio" name="search_app" style="z-index: 10000;">Forums</label></li><li class="app" style="z-index: 10000;"><label title="Members" for="s_members" style="z-index: 10000;"><input type="radio" value="members" id="s_members" class="input_radio" name="search_app" style="z-index: 10000;">Members</label></li><li class="app" style="z-index: 10000;"><label title="Help Files" for="s_core" style="z-index: 10000;"><input type="radio" value="core" id="s_core" class="input_radio" name="search_app" style="z-index: 10000;">Help Files</label></li>
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Calendar" for="s_calendar" style="z-index: 10000;">
+                            <input type="radio" checked="checked" value="calendar" id="s_calendar" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Calendar
+                        </label>
+                    </li>
+
+
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Downloads" for="s_downloads" style="z-index: 10000;">
+                            <input type="radio" value="downloads" id="s_downloads" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Downloads
+                        </label>
+                    </li>
+
+
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Blogs" for="s_blog" style="z-index: 10000;">
+                            <input type="radio" value="blog" id="s_blog" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Blogs
+                        </label>
+                    </li>
+
+
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Store" for="s_nexus" style="z-index: 10000;">
+                            <input type="radio" value="nexus" id="s_nexus" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Store
+                        </label>
+                    </li>
+
+
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Gallery" for="s_gallery" style="z-index: 10000;">
+                            <input type="radio" value="gallery" id="s_gallery" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Gallery
+                        </label>
+                    </li>
+
+
+                    <li class="app" style="z-index: 10000;">
+                        <label title="Pages" for="s_ccs" style="z-index: 10000;">
+                            <input type="radio" value="ccs" id="s_ccs" class="input_radio" name="search_app" style="z-index: 10000;">
+                            Pages
+                        </label>
+                    </li>
+
+                </ul>
+				<input type="submit" value="" class="submit_input clickable">
+			</span>
+                        <a class="right" id="adv_search" rel="search" accesskey="4" title="Advanced Search" href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=search&amp;search_in=calendar">Advanced</a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="contentWrapper">
+            <div class="clearfix" id="primary_nav">
+                <ul id="community_app_menu" class="ipsList_inline">
+                    <li class="left" id="nav_home"><a rel="home" title="Homepage" href="http://www.ipbforumskins.com">Home</a></li>
+                    <li class="left active" id="nav_app_forums"><a title="Go to Forums" href="http://www.ipbforumskins.com/skindemo/">Forums</a></li>
+                    <li class="left " id="nav_app_members"><a title="Go to Members" href="http://www.ipbforumskins.com/skindemo/index.php?/members/">Members</a></li>
+                    <li class="left " id="nav_app_calendar"><a title="Go to Calendar" href="http://www.ipbforumskins.com/skindemo/index.php?/calendar/">Calendar</a></li>
+                    <li class="left " id="nav_app_downloads"><a title="Go to Downloads" href="http://www.ipbforumskins.com/skindemo/index.php?/files/">Downloads</a></li>
+                    <li class="left " id="nav_app_blog"><a title="Go to Blogs" href="http://www.ipbforumskins.com/skindemo/index.php?/blogs/">Blogs</a></li>
+                    <li class="left " id="nav_app_nexus"><a title="Go to Store" href="http://www.ipbforumskins.com/skindemo/index.php?/store/">Store</a></li>
+                    <li class="left " id="nav_app_gallery"><a title="Go to Gallery" href="http://www.ipbforumskins.com/skindemo/index.php?/gallery/">Gallery</a></li>
+                    <li class="left " id="nav_app_ccs"><a title="Go to Pages" href="http://www.ipbforumskins.com/skindemo/index.php?/page/index.html">Pages</a></li>
+                </ul>
+            </div>
+            <div id="mainContent">
+                <div class="clearfix" id="secondary_navigation">
+                    <ol id="breadcrumb" class="breadcrumb top ipsList_inline left">
+                        <li class="first" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                            <a itemprop="url" href="http://www.ipbforumskins.com/skindemo/">
+                                <span itemprop="title">IPBForumSkins Demo</span>
+                            </a>
+                        </li>
+
+                    </ol>
+                    <ul class="ipsList_inline right" id="secondary_links">
+                        <li><a href="http://www.ipbforumskins.com/skindemo/index.php?app=forums&amp;module=extras&amp;section=boardrules">Guidelines</a></li>
+                        <li><a accesskey="2" href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=search&amp;do=viewNewContent&amp;search_app=forums">View New Content</a></li>
+
+                        <li><a title="Open Quick Navigation" id="quickNavLaunch" accesskey="9" rel="quickNavigation" href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=global&amp;section=navigation&amp;inapp=forums"><img alt="" src="http://www.ipbforumskins.com/skindemo/public/style_images/concise34x/icon_quicknav.png"></a></li>
+
+
+                    </ul>
+                </div>
+                <div id="content" class="clearfix">
+                    <div class="guestMessage">
+                        <strong>Welcome to IPBForumSkins Demo</strong><br>
+                        Register now to gain access to all of our features. Once registered and logged in, you will be able to create topics, post replies to existing threads, give reputation to your fellow members, get your own private messenger, post status updates, manage your profile and so much more. If you already have an account, <a href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=global&amp;section=login">login here</a> - otherwise <a href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=global&amp;section=register">create an account</a> for free today!
+                    </div>
+                !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                </div>
+            </div>
+        </div>
+        <div class="clearfix clear" id="footer_utilities">
+        <div class="skin_link"><a href="http://www.ipbforumskins.com">IPB skin</a> by <a href="http://www.ipbforumskins.com">IPBForumSkins</a></div>
+        <!-- Copyright Information -->
+        <p id="copyright">
+            <a title="Community Forum Software by Invision Power Services" href="http://www.invisionpower.com/apps/board/">Community Forum Software by IP.Board 3.4.0</a></p>
+        <!-- / Copyright -->
+        <ul class="ipsList_inline left">
+            <li>
+                <img class="clickable" id="rss_feed" alt="RSS Feed" src="http://www.ipbforumskins.com/skindemo/public/style_images/concise34x/feed.png"><ul class="ipbmenu_content" id="rss_menu" style="position: absolute; display: none; z-index: 9999;"><li style="z-index: 10000;"><a title="Community Calendar" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/calendar/1-community-calendar/" style="z-index: 10000;">Community Calendar</a></li>
+                <li style="z-index: 10000;"><a title="Last 10 Submissions RSS Feed" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/downloads/" style="z-index: 10000;">Last 10 Submissions RSS Feed</a></li>
+                <li style="z-index: 10000;"><a title="IPBForumSkins Demo Blogs RSS feed" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/blog/" style="z-index: 10000;">IPBForumSkins Demo Blogs RSS feed</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Articles" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c1-articles/" style="z-index: 10000;">Articles: Articles</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Pages" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c4-pages/" style="z-index: 10000;">Articles: Pages</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Miscellaneous" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c5-miscellaneous/" style="z-index: 10000;">Articles: Miscellaneous</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Forum Integration" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c2-forum-integration/" style="z-index: 10000;">Articles: Forum Integration</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Frontpage" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c3-frontpage/" style="z-index: 10000;">Articles: Frontpage</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Databases" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c6-databases/" style="z-index: 10000;">Articles: Databases</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Templates" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c7-templates/" style="z-index: 10000;">Articles: Templates</a></li>
+                <li style="z-index: 10000;"><a title="Articles: Media" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/1c8-media/" style="z-index: 10000;">Articles: Media</a></li>
+                <li style="z-index: 10000;"><a title="Media Demo: New Features" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/2c9-new-features/" style="z-index: 10000;">Media Demo: New Features</a></li>
+                <li style="z-index: 10000;"><a title="Media Demo: Other" href="http://www.ipbforumskins.com/skindemo/index.php?/rss/ccs/2c10-other/" style="z-index: 10000;">Media Demo: Other</a></li></ul>
+            </li>
+
+
+            <li>
+                <a href="#" id="new_skin" rel="nofollow" class="">Change Theme</a>
+                <ul style="display: none; position: absolute; z-index: 9999;" class="ipbmenu_content with_checks" id="new_skin_menucontent">
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="1" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">IP.Board</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="2" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">IP.Board Mobile</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="18" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Animate</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="4" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Baisik</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="13" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Carbon Blue</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="14" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Carbon Green</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="15" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Carbon Orange</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="16" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Carbon Red</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="6" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Chameleon</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="21" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Checkered</a>
+                    </li>
+
+
+                    <li class="selected" style="z-index: 10000;">
+                        <a data-skinid="30" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Concise</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="19" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Deflection</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="32" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Dimension</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="20" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Engraved</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="9" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Gravity Blue</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="8" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Gravity Green</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="34" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Gridlock</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="25" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Imperial</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="7" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Infinite</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="17" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Infinite Dark</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="22" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">iSkin</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="26" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Marble</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="27" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Navia</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="10" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Overlay Apple</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="11" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Overlay Blueberry</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="12" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Overlay Cherry</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="23" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Slate</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="24" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Slate (dark)</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="28" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Spectrum</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="5" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Splat</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="35" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Uniform</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="33" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Vanilla</a>
+                    </li>
+
+
+                    <li style="z-index: 10000;">
+                        <a data-skinid="36" data-clicklaunch="changeSkin" href="#" style="z-index: 10000;">Wireless</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li><a href="http://www.ipbforumskins.com/skindemo/index.php?app=nexus&amp;module=support&amp;section=new">Contact Us</a>
+            </li><li><a href="http://www.ipbforumskins.com/skindemo/index.php?/privacypolicy/" rel="nofollow">Privacy Policy</a></li>
+            <li>
+                <a accesskey="6" rel="help" title="View help" href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=help">Help / About</a>
+            </li>
+            <li><a title="Go to top" href="#top" rel="nofollow">Go to top</a></li>
+        </ul>
+        </div>
     </div>
-
-    <table border="1" style="width: 100%;">
-        <tr><td colspan="3">ХИДЕР</td></tr>
-        <tr>
-            <td>
-            </td>
-            <td>
-                {% block body %}{% endblock %}
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr><td colspan="3">ФУТЕР</td></tr>
-    </table>
-
-
-        {% block javascripts %}{% endblock %}
-    </body>
 </html>
