@@ -10,19 +10,24 @@
                         <li class="ipsField clear">
                             {{ form_label(form.username, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
                             {{ form_widget(form.username, { 'attr': {'class': 'input_text', 'size': 45} }) }}
-
                         </li>
                         <li class="ipsField clear">
                             {{ form_label(form.email, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
                             {{ form_widget(form.email, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                            {% if form_errors(form.email) is not empty %}
+                                <span class="reg_msg reg_error" id="display_name_msg"><img alt="" src="http://www.ipbforumskins.com/skindemo/public/style_images/concise34x/exclamation.png"> ✗ {{ form_errors(form.email)}}
+                                </span>
+                            {% endif %}
                         </li>
                         <li class="ipsField clear">
                             {{ form_label(form.plainPassword.first, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
                             {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                            {{ form_errors(form.plainPassword.first) }}
                         </li>
                         <li class="ipsField clear">
                             {{ form_label(form.plainPassword.second, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
                             {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                            {{ form_errors(form.plainPassword.second) }}
                         </li>
                     </ul>
                 </fieldset>
