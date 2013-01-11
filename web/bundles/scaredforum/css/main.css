@@ -457,7 +457,7 @@ address, caption, cite, code, dfn, th, var {
 }
 
 ol, ul {
-    list-style: none
+    list-style: none;
 }
 
 caption, th {
@@ -6766,3 +6766,28 @@ div {
 
 .resize_form{
     margin:0 auto; width:700px}
+
+.reg_msg {
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 3px 8px;
+    position: absolute;
+}
+.reg_msg img {
+    display: none;
+}
+.reg_msg.reg_error {
+    background-color: #AD2930;
+}
+.reg_msg.reg_accept {
+    background-color: #6F8F52;
+}
+
+.reg_msg.reg_error ul {
+    display: inline;
+}
+.reg_msg.reg_error li {
+    display: inline;
+}
