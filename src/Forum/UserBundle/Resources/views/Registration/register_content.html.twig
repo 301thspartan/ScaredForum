@@ -1,0 +1,39 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" id="register_form">
+    <h3 class="maintitle">
+        У нас есть печеньки!
+    </h3>
+    <div class="ipsBox removeDefault">
+        <div class="ipsBox_container ipsPad">
+            <div class="resize_form">
+                <fieldset>
+                    <ul class="ipsForm ipsForm_horizontal">
+                        <li class="ipsField clear">
+                            {{ form_label(form.username, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
+                            {{ form_widget(form.username, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+
+                        </li>
+                        <li class="ipsField clear">
+                            {{ form_label(form.email, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
+                            {{ form_widget(form.email, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                        </li>
+                        <li class="ipsField clear">
+                            {{ form_label(form.plainPassword.first, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
+                            {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                        </li>
+                        <li class="ipsField clear">
+                            {{ form_label(form.plainPassword.second, label|default(null), { 'label_attr': { 'class': 'ipsField_title' } }) }}
+                            {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_text', 'size': 45} }) }}
+                        </li>
+                    </ul>
+                </fieldset>
+                <hr>
+            </div>
+
+            <br/>
+            <fieldset class="ipsForm_submit">
+                <input type="submit" tabindex="51" value="Зарегистрироваться" id="register_submit"
+                       class="input_submit">
+            </fieldset>
+        </div>
+    </div>
+</form>

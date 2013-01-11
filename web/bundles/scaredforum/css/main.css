@@ -1013,7 +1013,7 @@ li.active {
 }
 
 .input_submit {
-    background: #3677e0 url('http://www.ipbforumskins.com/skindemo/public/style_images/concise34x/highlight_faint.png') repeat-x 0 0;
+    background: #3677e0 url('/bundles/scaredforum/img/highlight_faint.png') repeat-x 0 0;
     border-color: #205bbb;
     color: #fff;
     text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
@@ -6746,3 +6746,23 @@ div {
 .calendar_date_select {
     border: 2px solid red
 }
+#register_form {
+}
+#register_form .ipsForm_submit {
+    text-align: center;
+}
+#register_form .ipsPad .ipsForm_submit {
+    margin: 0 -9px -9px;
+}
+#register_submit {
+    font-size: 13px;
+}
+#register_form hr, #login_form hr {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+    width: 95%;
+}
+
+.resize_form{
+    margin:0 auto; width:700px}

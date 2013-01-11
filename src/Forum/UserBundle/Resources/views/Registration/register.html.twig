@@ -1,0 +1,24 @@
+{% extends "ScaredForumBundle::base.html.twig" %}
+
+{% block body %}
+<div id="register_form">
+    <div class="ipsSteps clearfix">
+        <ul>
+
+            <li class="ipsSteps_active">
+                <strong class="ipsSteps_title">Step 1</strong>
+                <span class="ipsSteps_desc">Your Account</span>
+                <span class="ipsSteps_arrow">&nbsp;</span>
+                <!--Don't delete: 1-->
+            </li>
+            <li class="">
+                <strong class="ipsSteps_title">Step 2</strong>
+                <span class="ipsSteps_desc">Confirmation</span>
+                <span class="ipsSteps_arrow">&nbsp;</span>
+            </li>
+        </ul>
+    </div>
+  <br />
+{% include "ScaredForumUserBundle:Registration:register_content.html.twig" %}
+</div>
+{% endblock body %}
