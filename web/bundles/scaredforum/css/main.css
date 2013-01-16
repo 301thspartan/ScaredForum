@@ -3846,7 +3846,9 @@ h3 {
 
 .message.error {
     background-color: #f3e3e6;
-    border-color: #e599aa
+    border-color: #e599aa;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .message.error,
