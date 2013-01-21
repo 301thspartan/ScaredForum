@@ -38,6 +38,8 @@
             $form = $formFactory->createForm();
             $form->setData($user);
 
+            $this->steps = array(array('title' => 'Шаг 1', 'desc' => 'Шаг первый - регистрация', 'active' => 1), array('title' => 'Шаг 2', 'desc' => 'Шаг второй - подтверждение '));
+
             if ('POST' === $request->getMethod()) {
                 $form->bind($request);
 
@@ -60,6 +62,7 @@
 
             return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
                 'form' => $form->createView(),
+                'steps' => $this->steps,
             ));
         }
     }

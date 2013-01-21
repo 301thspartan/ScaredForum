@@ -2,23 +2,8 @@
 
 {% block body %}
 <div id="register_form">
-    <div class="ipsSteps clearfix">
-        <ul>
-            <li class="">
-                <strong class="ipsSteps_title">Step 1</strong>
-                <span class="ipsSteps_desc">Your Account</span>
-                <span class="ipsSteps_arrow">&nbsp;</span>
-                <!--Don't delete: 1-->
-            </li>
-            <li class="ipsSteps_active">
-                <strong class="ipsSteps_title">Step 2</strong>
-                <span class="ipsSteps_desc">Confirmation</span>
-                <span class="ipsSteps_arrow">&nbsp;</span>
-            </li>
-        </ul>
-    </div>
-    <br />
 
+{% include 'ScaredForumBundle:shards:steps.html.twig' with {'steps': steps} %}
 
 {% block fos_user_content %}
     <div class="resize_form">

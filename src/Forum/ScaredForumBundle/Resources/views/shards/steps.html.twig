@@ -1,0 +1,16 @@
+<div class="ipsSteps clearfix">
+    <ul>
+        {% for step in steps %}
+        {% if step['active'] is defined and step['active'] is not empty  %}
+            <li class="ipsSteps_active">
+        {% else %}
+            <li class="ipsSteps">
+        {% endif %}
+            <strong class="ipsSteps_title">{{ step['title'] }}</strong>
+            <span class="ipsSteps_desc">{{ step['desc'] }} </span>
+            <span class="ipsSteps_arrow">&nbsp;</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<br />
