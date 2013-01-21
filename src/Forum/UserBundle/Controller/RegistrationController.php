@@ -16,8 +16,11 @@
     use FOS\UserBundle\Event\FormEvent;
     use FOS\UserBundle\Event\UserEvent;
     use FOS\UserBundle\Event\FilterUserResponseEvent;
+    use Symfony\Component\DependencyInjection\ContainerAware;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\RedirectResponse;
+    use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+    use FOS\UserBundle\Model\UserInterface;
 
     class RegistrationController extends BaseController
     {
@@ -38,7 +41,7 @@
             $form = $formFactory->createForm();
             $form->setData($user);
 
-            $this->steps = array(array('title' => 'Шаг 1', 'desc' => 'Шаг первый - регистрация', 'active' => 1), array('title' => 'Шаг 2', 'desc' => 'Шаг второй - подтверждение '));
+            $steps = array(array('title' => 'Шаг 1', 'desc' => 'Регистрация', 'active' => 1), array('title' => 'Шаг 2', 'desc' => 'Подтверждение'));
 
             if ('POST' === $request->getMethod()) {
                 $form->bind($request);
@@ -61,8 +64,26 @@
             }
 
             return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-                'form' => $form->createView(),
-                'steps' => $this->steps,
+                'form'  => $form->createView(),
+                'steps' => $steps,
+            ));
+        }
+
+        /**
+         * Tell the user his account is now confirmed
+         */
+        public function confirmedAction()
+        {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if (!is_object($user) || !$user instanceof UserInterface) {
+                throw new AccessDeniedException('This user does not have access to this section.');
+            }
+
+            $steps = array(array('title' => 'Шаг 1', 'desc' => 'Регистрация'), array('title' => 'Шаг 2', 'desc' => 'Подтверждение', 'active' => 1));
+
+            return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.'.$this->getEngine(), array(
+                'user'  => $user,
+                'steps' => $steps,
             ));
         }
     }

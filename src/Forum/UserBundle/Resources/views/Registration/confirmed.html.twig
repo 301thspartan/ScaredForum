@@ -6,12 +6,18 @@
 {% include 'ScaredForumBundle:shards:steps.html.twig' with {'steps': steps} %}
 
 {% block fos_user_content %}
-    <div class="resize_form">
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
-    {% endif %}
+
+    <div class="ipsBox">
+        <div class="ipsBox_container ipsPad">
+            {% if app.session is not empty %}
+                {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                {{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}<br><br>
+                {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
+            {% endif %}
+        </div>
     </div>
+
+
+
 {% endblock fos_user_content %}
 {% endblock body %}
