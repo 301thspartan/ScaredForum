@@ -698,6 +698,10 @@ a {
     line-height: 120%
 }
 
+#content a{
+    text-decoration: underline;
+}
+
 .fullWidth {
     margin: 0 -10px
 }
