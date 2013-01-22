@@ -252,4 +252,32 @@ class Thread
     public function __toString(){
         return $this->getName();
     }
+    /**
+     * @var integer
+     */
+    private $posts_count;
+
+
+    /**
+     * Set posts_count
+     *
+     * @param integer $postsCount
+     * @return Thread
+     */
+    public function setPostsCount($postsCount)
+    {
+        $this->posts_count = $postsCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get posts_count
+     *
+     * @return integer 
+     */
+    public function getPostsCount()
+    {
+        return $this->posts_count;
+    }
 }

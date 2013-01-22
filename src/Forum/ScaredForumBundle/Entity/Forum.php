@@ -298,4 +298,60 @@ class Forum
     public function __toString(){
         return $this->getName();
     }
+    /**
+     * @var integer
+     */
+    private $threads_count;
+
+    /**
+     * @var integer
+     */
+    private $posts_count;
+
+
+    /**
+     * Set threads_count
+     *
+     * @param integer $threadsCount
+     * @return Forum
+     */
+    public function setThreadsCount($threadsCount)
+    {
+        $this->threads_count = $threadsCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get threads_count
+     *
+     * @return integer 
+     */
+    public function getThreadsCount()
+    {
+        return $this->threads_count;
+    }
+
+    /**
+     * Set posts_count
+     *
+     * @param integer $postsCount
+     * @return Forum
+     */
+    public function setPostsCount($postsCount)
+    {
+        $this->posts_count = $postsCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get posts_count
+     *
+     * @return integer 
+     */
+    public function getPostsCount()
+    {
+        return $this->posts_count;
+    }
 }
