@@ -14,7 +14,7 @@
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
                 <div id="regular_signin">
-                    <h3 class="bar">Enter your sign in name and password</h3>
+                    <h3 class="bar">Вход на форумы, да</h3>
 
                     {% if error %}
                         <div class="message error">
@@ -31,7 +31,7 @@
                             <p class="ipsField_content">
                                 <input class="input_text" type="text" id="username" name="_username" value="{{ last_username }}" size="50" required="required"/>
                                 <br />
-                                <span class="desc ipsType_smaller">Need an account? <a title="Register now!" href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=global&amp;section=register">Register now!</a></span>
+                                <span class="desc ipsType_smaller">Еще не зарегистрированы?&nbsp;<a title="Регистрация" href="{{ path('fos_user_registration_register') }}">Регистрация</a></span>
                             </p>
 
                         </li>
@@ -40,9 +40,7 @@
                             <p class="ipsField_content">
                                 <input class="input_text" type="password" id="password" name="_password" required="required" size="50" />
                                 <br />
-                                <span class="desc ipsType_smaller"><a title="Register now!"
-                                                                  href="http://www.ipbforumskins.com/skindemo/index.php?app=core&amp;module=global&amp;section=register">Забыл
-                                пароль?</a></span>
+                                <span class="desc ipsType_smaller"><a title="Восстановить пароль" href="{{ path('fos_user_resetting_check_email') }}">Восстановить пароль?</a></span>
                             </p>
                         </li>
                     </ul>
@@ -56,7 +54,7 @@
                             <p class="ipsField_content">
                                 <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                                 <br />
-                                <span class="desc lighter">This is not recommended for shared computers</span>
+                                <span class="desc lighter">Не нажимать в интернет кафе!</span>
                             </p>
                         </li>
                     </ul>
