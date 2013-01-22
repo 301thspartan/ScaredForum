@@ -168,4 +168,5 @@ class ForumGroups
     public function __toString(){
         return $this->getName();
     }
+
 }

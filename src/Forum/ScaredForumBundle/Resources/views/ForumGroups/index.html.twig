@@ -1,21 +1,63 @@
 {% extends 'ScaredForumBundle::base.html.twig' %}
 
 {% block body %}
-<table class="records_list">
+<div id="board_index" class="ipsLayout ipsLayout_largeright clearfix fullWidth">
+    <div id="categories" class="ipsLayout_content clearfix">
 
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('forumgroups_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-        <tr>
-            <td>{{ entity.description }}</td>
-        {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="/">Delete</a></td>
-        {% endif %}
-        </tr>
+
+    {% for key, entity in entities %}
+        <div id="category_1" class="category_block block_wrap">
+            <h3 class="maintitle">{{ entity.name }}</h3>
+            <div class="ipsBox table_wrap removeDefault">
+                <div class="ipsBox_container">
+                    <table class="ipb_table hoverTable" summary="Forums within the category 'A Test Category'">
+                        <tr class="notnew">
+                            <td class="col_c_icon">
+                                <img class="fadedForumIcon" alt="" src="{{ asset('bundles/scaredforum/img/default.png') }}">
+                            </td>
+                            <td class="col_c_forum">
+                                <h4 class="forum_name">
+                                    <strong class="highlight_unread">
+                                        <a title="A Test Forum" href="http://www.ipbforumskins.com/skindemo/index.php?/forum/2-a-test-forum/">A Test Forum</a>
+                                    </strong>
+                                </h4>
+                                <span class="forum_desc_pos"><span class="forum_desc_con" style="left: 10px; opacity: 0; display: none;"><span class="forum_description">
+                                    A test forum that may be removed at any time
+                                </span></span></span>
+                            </td>
+                            <td class="col_c_stats ipsType_small">
+                                <ul>
+                                    <li>20 topics</li>
+                                    <li>86 replies</li>
+                                </ul>
+                            </td>
+                            <td class="col_c_post">
+                                <a class="ipsUserPhotoLink left" href="http://www.ipbforumskins.com/skindemo/index.php?/user/58-occupant/">
+                                    <img class="ipsUserPhoto ipsUserPhoto_mini" alt="Main test topic - last post by occupant" src="http://www.gravatar.com/avatar/0ec42dbbb32ea4fd3c176a08f72b2652?s=100&amp;d=http%3A%2F%2Fwww.ipbforumskins.com%2Fskindemo%2Fpublic%2Fstyle_images%2Fconcise34x%2Fprofile%2Fdefault_large.png">
+                                </a>
+                                <ul class="last_post ipsType_small">
+                                    <li>
+                                        <span class="highlight_unread"><a title="Main test topic" href="http://www.ipbforumskins.com/skindemo/index.php?/topic/6-main-test-topic/">Main test topic</a></span>
+                                    </li>
+                                    <li>
+                                    <span class="desc lighter blend_links">
+                                        <a title="View last post" href="http://www.ipbforumskins.com/skindemo/index.php?/topic/6-main-test-topic/?view=getlastpost">19 Oct 2011</a>
+                                    </span>
+                                        By
+                                        <a title="" href="http://www.ipbforumskins.com/skindemo/index.php?/user/58-occupant/" class="url fn name  ___hover___member _hoversetup" hovercard-id="58" hovercard-ref="member" id="anonymous_element_1"><span itemprop="name">occupant</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    <br>
+    </div>
     {% endfor %}
-    </tbody>
-</table>
+</div>
+</div>
     {% if is_granted('ROLE_ADMIN') %}
         <h1>Новая группа</h1>
         <form action="{{ path('forumgroups_create') }}" method="post" {{ form_enctype(form) }}>

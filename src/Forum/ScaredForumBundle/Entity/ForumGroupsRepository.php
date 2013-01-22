@@ -21,4 +21,8 @@ class ForumGroupsRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    public function getLatest3Forums(){
+
+    }
 }
